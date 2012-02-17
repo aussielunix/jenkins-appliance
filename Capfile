@@ -39,7 +39,7 @@ namespace :puppet do
         run "#{sudo} apt-get install -y puppet git-core"
         run "#{sudo} mkdir /opt/build -m0755"
         run "#{sudo} chown deploy:deploy /opt/build"
-        run "grep 'github.com' ~/.ssh/known_hosts || ssh-keyscan -t rsa,dsa github.com | tee -a ~/.ssh/known_hosts"
+        run "grep 'bitbucket.org' ~/.ssh/known_hosts || ssh-keyscan -t rsa,dsa bitbucket.org | tee -a ~/.ssh/known_hosts"
         run "git clone git@bitbucket.org:aussielunix/jenkins-appliance.git /opt/build"
     end
 
