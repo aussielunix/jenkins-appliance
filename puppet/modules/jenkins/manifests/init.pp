@@ -14,7 +14,7 @@ class jenkins::git {
 
 class jenkins::service {
   case $::operatingsystem {
-    centos, redhat, oel: {
+    centos, redhat, oel, ubuntu: {
       service { 'jenkins':
         ensure     => running,
         enable     => true,
