@@ -6,12 +6,6 @@ class jenkins {
   Class["jenkins::repo"] -> Class["jenkins::package"] -> Class["jenkins::service"]
 }
 
-class jenkins::git {
-  install-jenkins-plugin { "git-plugin" :
-    name => "git";
-  }
-}
-
 class jenkins::service {
   case $::operatingsystem {
     centos, redhat, oel, ubuntu: {
@@ -140,12 +134,13 @@ define install-jenkins-plugin($name, $version=0) {
 
   exec {
     "download-${name}" :
-      command  => "wget --no-check-certificate ${base_url}${plugin}",
-      cwd      => "${plugin_dir}",
-      require  => File["${plugin_dir}"],
-      path     => ["/usr/bin", "/usr/sbin",],
-      user     => "jenkins",
-      unless   => "test -f ${plugin_dir}/${plugin}";
+      command => "wget --no-check-certificate ${base_url}${plugin}",
+      cwd     => "${plugin_dir}",
+      require => File["${plugin_dir}"],
+      path    => ["/usr/bin", "/usr/sbin",],
+      user    => "jenkins",
+      unless  => "test -f ${plugin_dir}/${plugin}",
+      notify  => Class['jenkins::service']
   }
 }
 
