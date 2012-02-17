@@ -12,4 +12,16 @@ node default {
   install-jenkins-plugin {'chucknorris-plugin':
     name => 'chucknorris'
   }
+
+  install-jenkins-plugin {'github-plugin':
+    name => 'github'
+  }
+
+  install-jenkins-plugin {'greenballs-plugin':
+    name => 'greenballs'
+  }
+
+  install-jenkins-plugin {'ruby-plugin':
+    name => 'ruby'
+  }
 }
