@@ -1,0 +1,10 @@
+name 'rafaelfc-jenkins'
+version '1.0.0'
+
+author 'Rafael Felix Correa <rafael.felix@gmail.com>'
+license 'Apache 2.0'
+project_page 'git://github.com/rafaelfelix/puppet-jenkins.git'
+source 'git://github.com/rafaelfelix/puppet-jenkins.git'
+summary 'Manage the Jenkins continuous integration service with Puppet'
+description 'Manage the Jenkins continuous integration service with Puppet'
+dependency 'puppetlabs/stdlib', '>=2.0.0'
