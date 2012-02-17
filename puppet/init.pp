@@ -24,4 +24,8 @@ node default {
   install-jenkins-plugin {'ruby-plugin':
     name => 'ruby'
   }
+
+  install-jenkins-plugin {'rake-plugin':
+    name => 'rake'
+  }
 }
