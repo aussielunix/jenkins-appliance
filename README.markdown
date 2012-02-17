@@ -43,3 +43,4 @@ To build a new server from this appliance:
 # TODO
 
 * Write contributers howto
+* test on CentOS
