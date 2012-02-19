@@ -1,39 +1,24 @@
-Exec { path => '/usr/bin:/usr/sbin/:/bin:/sbin' }
-
-
 node default {
   include stdlib
   include jenkins
 
-  install-jenkins-plugin {'git-plugin':
-    name => 'git'
-  }
+  $plugins = [ 
+    'git',
+    'chucknorris',
+    'github',
+    'greenballs',
+    'ruby',
+    'rake',
+    'ssh',
+    'monitoring',
+    'favorite',
+    'gravatar',
+    'jabber',
+    'sounds',
+    'radiatorviewplugin',
+    'vsphere-cloud'
+  ]
 
-  install-jenkins-plugin {'chucknorris-plugin':
-    name => 'chucknorris'
-  }
+  jenkins::plugin::install { $plugins: }
 
-  install-jenkins-plugin {'github-plugin':
-    name => 'github'
-  }
-
-  install-jenkins-plugin {'greenballs-plugin':
-    name => 'greenballs'
-  }
-
-  install-jenkins-plugin {'ruby-plugin':
-    name => 'ruby'
-  }
-
-  install-jenkins-plugin {'rake-plugin':
-    name => 'rake'
-  }
-
-  install-jenkins-plugin {'ssh-plugin':
-    name => 'ssh'
-  }
-
-  install-jenkins-plugin {'monitoring-plugin':
-    name => 'monitoring'
-  }
 }
