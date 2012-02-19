@@ -28,4 +28,12 @@ node default {
   install-jenkins-plugin {'rake-plugin':
     name => 'rake'
   }
+
+  install-jenkins-plugin {'ssh-plugin':
+    name => 'ssh'
+  }
+
+  install-jenkins-plugin {'monitoring-plugin':
+    name => 'monitoring'
+  }
 }
