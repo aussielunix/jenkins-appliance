@@ -1,4 +1,0 @@
-module: rafaelfc/jenkins
-version: 1.0.0
-url: file:///home/lunix/.puppet/var/puppet-module/cache/http_forge_puppetlabs_com-75a31f1d6f1ef6eb63b4479b3512ee1508209a7f/rafaelfc-jenkins-1.0.0.tar.gz
-installed: Fri Feb 17 15:15:57 +1100 2012
