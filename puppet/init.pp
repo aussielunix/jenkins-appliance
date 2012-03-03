@@ -16,7 +16,9 @@ node default {
     'jabber',
     'sounds',
     'radiatorviewplugin',
-    'vsphere-cloud'
+    'vsphere-cloud',
+    'warnings',
+    'htmlpublisher'
   ]
 
   jenkins::plugin::install { $plugins: }
