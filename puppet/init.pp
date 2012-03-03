@@ -18,6 +18,7 @@ node default {
     'radiatorviewplugin',
     'vsphere-cloud',
     'warnings',
+    'analysis-core',
     'htmlpublisher'
   ]
 
