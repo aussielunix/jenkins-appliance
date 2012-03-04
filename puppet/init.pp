@@ -19,6 +19,7 @@ node default {
     'vsphere-cloud',
     'warnings',
     'analysis-core',
+    'rvm',
     'htmlpublisher'
   ]
 
