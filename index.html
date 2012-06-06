@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Jenkins-appliance by aussielunix</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/aussielunix/jenkins-appliance">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/aussielunix/jenkins-appliance/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/aussielunix/jenkins-appliance/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Jenkins-appliance</h1>
+          <p>Jenkins appliance built with puppet + librarian-puppet </p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/aussielunix">aussielunix</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h2>Jenkins Appliance</h2>
+
+<p>This is a JenkinsCI appliance built using puppet, some modules on github and a pre-release of <a href="https://github.com/rodjek/librarian-puppet/tree/">librarian-puppet</a>  </p>
+
+<h2>Notes</h2>
+
+<p>This is a repos for demo'ing <a href="https://github.com/rodjek/librarian-puppet/tree/">librarian-puppet</a> only and should not be used in production.  </p>
+
+<p>To see this appliance in action you will need a new VM with git, ruby and puppet.
+Currently tested on Ubuntu Lucid.</p>
+
+<h2>Build the appliance</h2>
+
+<p>On the new VM:</p>
+
+<pre><code># install librarian-puppet
+sudo gem install --pre librarian-puppet
+
+# grab the jenkins appliance source
+git clone git@github.com:aussielunix/jenkins-appliance.git
+cd jenkins-appliance
+
+# drag in all needed modules (as per Puppetfile)
+librarian-puppet install --verbose
+
+# do a puppet run
+sudo puppet apply --modulepath=modules init.pp
+</code></pre>
+
+<p>That's it. You should now have a working Jenkins CI server available on port :8080</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    
+  </body>
+</html>
