@@ -1,46 +1,44 @@
 # Jenkins appliance
 
-
-This repos is a standalone Puppet 2.7 _appliance_ for building / deploying a Jenkins instance.
+This repos is a standalone Puppet 2.7 _appliance_ for building / deploying a Jenkins instance.  
+It makes use of puppet, librarian-puppet, capistrano and some puppet modules from the forge.  
 
 ## In here you will find:  
 
+* A Gemfile to drag in any needed rubygems  
+* A Puppetfile for dragging in the neeed puppet modules  
 * a collection of puppet(2.7) manifests  
 * a capistrano recipe for orchestration  
 
 ## Puppet modules used
 
 * Puppetlabs' `stdlib` puppet module from the Puppetlab's Forge
-* rafaelfelix's `jenkins` module from the Puppetlab's Forge
+* Puppetlabs' `apt` puppet module from the Puppetlab's Forge
+* rtyler's `jenkins` module from the Puppetlab's Forge
 
 ## Pre-requisites
 
 The following pre-requisites should be met to be able to use this appliance.  
 
 * a clean/fresh minimal Ubuntu Lucid VM (if starting from scratch)  
-* a *deploy* user with sudo access on the VM
+* a *user* with sudo access on the VM
 * ssh keys deployed and ssh-agent forwarding turned on.  
-* capistrano installed locally  
+* `bundle install` run to drag in the rubygems deps
 
 ## Building a new server
 
-To build a new server from this appliance:
+To use this appliance:
 
+* set the username you will use to connect to the server with in the Capfile:
+
+    set :user, 'lunix'
 
     :::bash
-    # clone repos
-    git clone git@bitbucket.org:aussielunix/jenkins-appliance.git
     # copy ssh pub key to server
-    ssh-copy-id -i ~/.ssh/user_dsa.pub deploy@ci.example.com.au
-    cd jenkins-appliance
+    ssh-copy-id -i ~/.ssh/user_dsa.pub user@ci.example.com.au
     # using capistrano, prep server
     cap puppet:prep
     # using capistrano, run puppet
-    cap puppet:go 
+    cap puppet:go HOST='ci.example.com.au'
     # profit !
     ```
-
-# TODO
-
-* Write contributers howto
-* test on CentOS
