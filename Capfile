@@ -13,8 +13,7 @@ namespace :puppet do
     desc 'prep dev server via rsync'
     task :prepd, :hosts => host do
         options = ENV['options'] || ENV['OPTIONS']
-        lines = ['deb http://apt.puppetlabs.com/ubuntu lucid main',
-            'deb-src http://apt.puppetlabs.com/ubuntu lucid main',
+        lines = ['deb http://apt.puppetlabs.com/ lucid main',
             '']
         put lines.join('\n'), '/tmp/puppetlabs.list.new'
         run "#{sudo} mv /tmp/puppetlabs.list.new /etc/apt/sources.list.d/puppetlabs.list"
@@ -29,8 +28,7 @@ namespace :puppet do
     desc 'prep server for puppet run - git clone etc'
     task :prep, :hosts => host do
         options = ENV['options'] || ENV['OPTIONS']
-        lines = ['deb http://apt.puppetlabs.com/ubuntu lucid main',
-            'deb-src http://apt.puppetlabs.com/ubuntu lucid main',
+        lines = ['deb http://apt.puppetlabs.com/ lucid main',
             '']
         put lines.join("\n"), '/tmp/puppetlabs.list.new'
         run "#{sudo} mv /tmp/puppetlabs.list.new /etc/apt/sources.list.d/puppetlabs.list"
@@ -58,6 +56,6 @@ namespace :puppet do
     desc 'runs puppet apply on remote host - Params:  HOST OPTIONS'
     task :go, :hosts => host do
         options = ENV['options'] || ENV['OPTIONS']
-        run "#{sudo} puppet apply --verbose /opt/build/puppet/init.pp --modulepath=/opt/build/puppet/modules #{options}"
+        run "#{sudo} puppet apply --verbose /opt/build/init.pp --modulepath=/opt/build/modules #{options}"
     end
 end
