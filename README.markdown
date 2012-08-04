@@ -33,12 +33,16 @@ To use this appliance:
 
     set :user, 'lunix'
 
+* copy your ssh pub key to server
 
-    # copy ssh pub key to server
     ssh-copy-id -i ~/.ssh/user_dsa.pub user@ci.example.com.au
-    # using capistrano, prep server
+
+* using capistrano, prep server
+
     cap puppet:prep
-    # using capistrano, run puppet
+
+* using capistrano, run puppet
+
     cap puppet:go HOST='ci.example.com.au'
-    # profit !
-    ```
+
+* Test - http://ci.example.com:8080
