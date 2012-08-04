@@ -31,18 +31,18 @@ To use this appliance:
 
 * set the username you will use to connect to the server with in the Capfile:
 
-    set :user, 'lunix'
+    `set :user, 'lunix'`
 
 * copy your ssh pub key to server
 
-    ssh-copy-id -i ~/.ssh/user_dsa.pub user@ci.example.com.au
+    `ssh-copy-id -i ~/.ssh/user_dsa.pub user@ci.example.com.au`
 
 * using capistrano, prep server
 
-    cap puppet:prep
+    `cap puppet:prep`
 
 * using capistrano, run puppet
 
-    cap puppet:go HOST='ci.example.com.au'
+    `cap puppet:go HOST='ci.example.com.au'`
 
 * Test - http://ci.example.com:8080
