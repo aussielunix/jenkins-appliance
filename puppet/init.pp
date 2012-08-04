@@ -1,6 +1,8 @@
 node default {
+  include apt
   include stdlib
   include jenkins
+
 
   $plugins = [ 
     'git',
@@ -20,9 +22,9 @@ node default {
     'warnings',
     'analysis-core',
     'rvm',
-    'htmlpublisher'
+    'htmlpublisher',
+    'xfpanel'
   ]
 
   jenkins::plugin::install { $plugins: }
-
 }
