@@ -1,13 +1,13 @@
 # Jenkins appliance
 
 This repos is a standalone Puppet 2.7 _appliance_ for building / deploying a Jenkins instance.  
-It makes use of puppet, librarian-puppet, capistrano and some puppet modules from the forge.  
+It makes use of [Puppet](http://puppetlabs.com/puppet/puppet-open-source/), [librarian-puppet](http://librarian-puppet.com/), [capistrano](https://github.com/capistrano/capistrano/wiki) and some Puppet modules from the [forge](http://forge.puppetlabs.com/).  
 
 ## In here you will find:  
 
 * A Gemfile to drag in any needed rubygems  
 * A Puppetfile for dragging in the neeed puppet modules  
-* a collection of puppet(2.7) manifests  
+* a puppet(2.7) manifest (init.pp) that makes use of the jenkins module  
 * a capistrano recipe for orchestration  
 
 ## Puppet modules used
