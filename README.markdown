@@ -23,6 +23,7 @@ The following pre-requisites should be met to be able to use this appliance.
 * a clean/fresh minimal Ubuntu Lucid VM (if starting from scratch)  
 * a *user* with sudo access on the VM
 * ssh keys deployed and ssh-agent forwarding turned on.  
+* ruby and bundler installed locally  
 * `bundle install` run to drag in the rubygems deps
 
 ## Building a new server
