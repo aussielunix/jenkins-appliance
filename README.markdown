@@ -33,7 +33,7 @@ To use this appliance:
 
     set :user, 'lunix'
 
-    :::bash
+
     # copy ssh pub key to server
     ssh-copy-id -i ~/.ssh/user_dsa.pub user@ci.example.com.au
     # using capistrano, prep server
