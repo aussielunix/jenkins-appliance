@@ -24,7 +24,7 @@ Vagrant is for building out Jenkins in a local virtualbox guest.
     # build the box
     vagrant up
 
-    # browse to 172.31.255.2:8080
+    # browse to localhost:8080
 
 
 ## Requirements
