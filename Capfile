@@ -33,10 +33,12 @@ task :go, :hosts => host do
   run "echo 'deb http://apt.puppetlabs.com precise main' | #{sudo} tee /etc/apt/sources.list.d/puppetlabs.list"
   run "#{sudo} apt-key adv --keyserver keyserver.ubuntu.com --recv 4BD6EC30" #puppetlabs
   run "#{sudo} apt-get update"
-  run "#{sudo} apt-get install -y puppet git-core"
+  run "#{sudo} apt-get install -yq puppet git-core ruby1.8 libopenssl-ruby ruby rubygems ruby-bundler"
+  run "#{sudo} gem install librarian-puppet --no-ri --no-rdoc"
   run "#{sudo} mkdir /opt/build -m0755"
   run "#{sudo} chown #{user}:#{user} /opt/build"
   run "git clone https://github.com/aussielunix/jenkins-appliance.git /opt/build"
+  run "cd /opt/build && librarian-puppet install --verbose"
   run "#{sudo} puppet apply --verbose /opt/build/manifests/site.pp --modulepath=/opt/build/modules"
 end
 
