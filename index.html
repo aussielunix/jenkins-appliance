@@ -1,77 +1,127 @@
 <!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Jenkins-appliance by aussielunix</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/aussielunix/jenkins-appliance">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/aussielunix/jenkins-appliance/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/aussielunix/jenkins-appliance/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
 
-    <div class="wrapper">
+  <title>Jenkins-appliance</title>
+  <meta name="description" content="Jenkins appliance built with puppet + librarian-puppet ">
 
-      <section>
-        <div id="title">
-          <h1>Jenkins-appliance</h1>
-          <p>Jenkins appliance built with puppet + librarian-puppet </p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/aussielunix">aussielunix</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Jenkins-appliance</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Jenkins appliance built with puppet + librarian-puppet </p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/aussielunix/jenkins-appliance/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/aussielunix/jenkins-appliance/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/aussielunix/jenkins-appliance" class="code">View Jenkins-appliance on GitHub</a>
         </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>Jenkins Appliance</h1>
 
-        <h2>Jenkins Appliance</h2>
+<p>In here is some puppet manifests and modules for building out a working Jenkins system on a single host.<br>
+You have a choice of two very simple deployment methods: </p>
 
-<p>This is a JenkinsCI appliance built using puppet, some modules on github and a pre-release of <a href="https://github.com/rodjek/librarian-puppet/tree/">librarian-puppet</a>  </p>
+<ul>
+<li>Capistrano</li>
+<li>Vagrant</li>
+</ul><p>Capistrano is for building out Jenkins on a remote host.<br>
+For full usage help run <code>cap -e go</code></p>
 
-<h2>Notes</h2>
-
-<p>This is a repos for demo'ing <a href="https://github.com/rodjek/librarian-puppet/tree/">librarian-puppet</a> only and should not be used in production.  </p>
-
-<p>To see this appliance in action you will need a new VM with git, ruby and puppet.
-Currently tested on Ubuntu Lucid.</p>
-
-<h2>Build the appliance</h2>
-
-<p>On the new VM:</p>
-
-<pre><code># install librarian-puppet
-sudo gem install --pre librarian-puppet
-
-# grab the jenkins appliance source
-git clone git@github.com:aussielunix/jenkins-appliance.git
-cd jenkins-appliance
-
-# drag in all needed modules (as per Puppetfile)
-librarian-puppet install --verbose
-
-# do a puppet run
-sudo puppet apply --modulepath=modules init.pp
+<pre><code>cap go HOST='ec2-foo-09498.example.com'
+# browse to ec2-foo-09498.example.com:8080
 </code></pre>
 
-<p>That's it. You should now have a working Jenkins CI server available on port :8080</p>
-      </section>
+<p>Vagrant is for building out Jenkins in a local virtualbox guest.  </p>
 
+<pre><code>#if not already installed
+gem install librarian-puppet 
+
+# bring down latest versions of the puppet modules
+# only run this the once
+librarian-puppet install
+
+# build the box
+vagrant up
+
+# browse to localhost:8080
+</code></pre>
+
+<h2>Requirements</h2>
+
+<p>Vagrant requires you have Virtualbox setup and the vagrant rubygem installed.<br>
+You will also required to have a copy of the Puppet modules.<br>
+This is a simple once off <code>librarian-puppet install</code> before you start.<br><a href="http://librarian-puppet.com/">librarian-puppet</a> can be installed with rubygems.<br>
+Capistrano requires you have a clean Ubuntu Precise guest (from anywhere, local VM, cloud provider etc) and the Capistrano rubygem installed.<br>
+Capistrano is able to take care of everything else and is the only requirement for this method.  </p>
+
+<table>
+<tr>
+<th>Author</th>
+<td>Mick Pollard (aussielunix at g mail dot com</td>
+  </tr>
+<tr>
+<th>Copyright</th>
+<td>Copyright (c) 2012 by Mick Pollard</td>
+  </tr>
+<tr>
+<th>License</th>
+<td>Distributed under the Apache License, see COPYING</td>
+  </tr>
+<tr>
+<th>twitter </th>
+<td><a href="https://github.com/aussielunix" class="user-mention">@aussielunix</a></td>
+  </tr>
+</table>
+        </article>
+      </div>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-    
-  </body>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/aussielunix" class="avatar"><img src="https://secure.gravatar.com/avatar/2e33904616a79656ad93857ead3fe7b3?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/aussielunix">aussielunix</a> maintains <a href="https://github.com/aussielunix/jenkins-appliance">Jenkins-appliance</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/aussielunix/jenkins-appliance/tarball/master" class="tar">tar</a><a href="https://github.com/aussielunix/jenkins-appliance/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-34494593-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+</body>
 </html>
