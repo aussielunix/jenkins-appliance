@@ -1,42 +1,53 @@
 #!/usr/bin/env ruby
 
-Bundler.require(:default)
-
-set :user, 'lunix'
-set :ssh_options, { :forward_agent => true }
 default_run_options[:pty] = true
+set :ssh_options, { :forward_agent => true }
 
-host = ENV['HOST']
-host ||= 'ci.example.com'
+set :user, ENV['USER']
+set :host, ENV['HOST']
 
 
-namespace :puppet do
+desc <<-DESC
+Takes a Ubuntu Precise host from nothing to Jenkins CI in a single task.
 
-    desc 'prep server via rsync'
-    task :prep, :hosts => host do
-        options = ENV['options'] || ENV['OPTIONS']
-        line = 'deb http://apt.puppetlabs.com/ lucid main'
-        put line, '/tmp/puppetlabs.list.new'
-        run "#{sudo} mv /tmp/puppetlabs.list.new /etc/apt/sources.list.d/puppetlabs.list"
-        run "#{sudo} apt-key adv --keyserver keyserver.ubuntu.com --recv 4BD6EC30"
-        run "#{sudo} apt-get update"
-        run "#{sudo} apt-get install -y puppet git-core"
-        run "#{sudo} mkdir /opt/build -m0755"
-        run "#{sudo} chown #{user}:#{user} /opt/build"
-        `bundle exec librarian-puppet install`
-        `rsync -avz --delete -e ssh . #{user}@#{host}:/opt/build`
-    end
+This task does the following:
 
-    desc 'update puppet repos on server - rsync'
-    task :up, :hosts => host do
-        options = ENV['options'] || ENV['OPTIONS']
-        `git pull`
-        `rsync -avz --delete -e ssh . #{user}@#{host}:/opt/build`
-    end
+  * adds the puppetlabs apt repos
+  * installs puppet and git
+  * clones this repos into /opt/build
+  * runs puppet apply
 
-    desc 'runs puppet apply on remote host - Params:  HOST OPTIONS'
-    task :go, :hosts => host do
-        options = ENV['options'] || ENV['OPTIONS']
-        run "#{sudo} puppet apply --verbose /opt/build/init.pp --modulepath=/opt/build/modules #{options}"
-    end
+Arguments:
+
+  Required: (host to run remote command on)
+
+    HOST="fqdn goes here"
+
+  Optional: (defaults to calling username)
+
+    USER='username to run remote commands as'
+
+DESC
+task :go, :hosts => host do
+  abort "HOST is empty. run 'cap -e go' for usage info." if host.nil?
+  run "echo 'deb http://apt.puppetlabs.com precise main' | #{sudo} tee /etc/apt/sources.list.d/puppetlabs.list"
+  run "#{sudo} apt-key adv --keyserver keyserver.ubuntu.com --recv 4BD6EC30" #puppetlabs
+  run "#{sudo} apt-get update"
+  run "#{sudo} apt-get install -y puppet git-core"
+  run "#{sudo} mkdir /opt/build -m0755"
+  run "#{sudo} chown #{user}:#{user} /opt/build"
+  run "git clone https://github.com/aussielunix/jenkins-appliance.git /opt/build"
+  run "#{sudo} puppet apply --verbose /opt/build/manifests/site.pp --modulepath=/opt/build/modules"
+end
+
+desc <<-DESC
+DNAT rule to redirect port 80 to 8080
+
+This applies a simple iptables REDIRECT to make Jenkins available on port 80.
+
+# sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+DESC
+task :dnat, :hosts => host do
+  run "#{sudo} iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080"
 end
