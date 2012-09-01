@@ -21,7 +21,8 @@ For full usage help run `cap -e go`
 
 Vagrant requires you have Virtualbox setup and the vagrant rubygem installed.  
 Capistrano requires you have a clean Ubuntu Precise guest (from anywhere, local VM, cloud provider etc) and the capistrano rubygem installed.  
-Both methods require you have a copy of the Puppet modules. This is a simple once off `librarian-puppet install`
+Both methods require you have a copy of the Puppet modules. This is a simple once off `librarian-puppet install` before you start.  
+[librarian-puppet](http://librarian-puppet.com/) can be installed with rubygems.
 
 
 <table>
