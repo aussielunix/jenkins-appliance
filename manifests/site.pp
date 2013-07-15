@@ -26,5 +26,5 @@ node default {
     'xfpanel'
   ]
 
-  jenkins::plugin::install { $plugins: }
+  jenkins::plugin { $plugins: }
 }

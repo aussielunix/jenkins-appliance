@@ -1,8 +1,8 @@
 mod "apt",
-  :git => "git://github.com/puppetlabs/puppetlabs-apt.git"
+  :git => "https://github.com/puppetlabs/puppetlabs-apt"
 
 mod "stdlib",
-  :git => "git://github.com/puppetlabs/puppetlabs-stdlib.git"
+  :git => "https://github.com/puppetlabs/puppetlabs-stdlib"
 
 mod "jenkins",
-  :git => "git://github.com/rtyler/puppet-jenkins.git"
+  :git => "https://github.com/jenkinsci/puppet-jenkins"
