@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'capistrano-puppeteer'
 gem 'librarian-puppet', '0.9.1'
