@@ -1,5 +1,7 @@
 # Jenkins Appliance
 
+**unmaintained**
+
 In here is some puppet manifests and modules for building out a working Jenkins system on a single host.  
 You have a choice of two very simple deployment methods: 
 
@@ -51,4 +53,3 @@ Capistrano is able to take care of everything else and is the only requirement f
     <th>twitter </th><td>@aussielunix</td>
   </tr>
 </table>
-
